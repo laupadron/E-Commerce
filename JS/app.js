@@ -5,7 +5,7 @@ const allItemShop = document.querySelectorAll('.shop-items')
 
 let arrayItems =[]; 
 arrayItems = JSON.parse(localStorage.getItem("items"));
-
+addToCart()
 
 
 
