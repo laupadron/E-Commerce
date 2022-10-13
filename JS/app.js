@@ -3,8 +3,8 @@ const buttonAdd = document.querySelectorAll(' .btn-one');
 const cartsItems =document.querySelectorAll('.section');
 const allItemShop = document.querySelectorAll('.shop-items')
 
-let arrayItems =[];
-
+let arrayItems =[]; 
+arrayItems = JSON.parse(localStorage.getItem("items"));
 
 
 
@@ -61,7 +61,7 @@ function addItemToCart(itemTitle, itemPrice,itemImage){
  }
 }*/
 
-
+localStorage.setItem("items", JSON.stringify(arrayItems))
 
  const itemCartRow = document.createElement('div');
  
@@ -77,7 +77,7 @@ function addItemToCart(itemTitle, itemPrice,itemImage){
    <button class="aside-btn">X</button>
   </div>`;
  
-  arrayItems.push({itemTitle,itemPrice,itemImage });
+  arrayItems.push({itemTitle,itemPrice });
   
  itemCartRow.innerHTML = cartContent;
  shopItems.append(itemCartRow);
