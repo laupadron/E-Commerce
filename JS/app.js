@@ -61,7 +61,7 @@ function addItemToCart(itemTitle, itemPrice,itemImage){
  }
 }*/
 
-localStorage.setItem("items", JSON.stringify(arrayItems));
+
 
  const itemCartRow = document.createElement('div');
  
