@@ -5,7 +5,11 @@ const allItemShop = document.querySelectorAll('.shop-items')
 
 let arrayItems =[];
 arrayItems = JSON.parse(localStorage.getItem("items"));
-addItemToCart();
+addItemToCart()
+
+
+
+
 
 
 
@@ -31,11 +35,12 @@ function addToCart(event){
  const itemTitle= itemComplete.querySelector('.h3').textContent;
  
  const itemPrice =itemComplete.querySelector('.price').textContent;
- const itemImage = itemComplete.querySelector('.item-img').src;
+ const itemImage = itemComplete.querySelector('.item-img').src
  
  
  
- addItemToCart(itemTitle, itemPrice,itemImage,);
+ addItemToCart(itemTitle, itemPrice,itemImage);
+ 
  
  
 }
@@ -44,18 +49,19 @@ function addToCart(event){
 
 function addItemToCart(itemTitle, itemPrice,itemImage){
  
- arrayItems.push({itemImage,itemTitle,itemPrice});
-
- localStorage.setItem("items", JSON.stringify(arrayItems));
  
-//const titleItem= document.querySelector('.h3').textContent;
- //console.log(titleItem)
-/*for(let i=0;i<byTitle.length;i++){
- if(byTitle[i].innerText=== itemTitle){
-  console.log(byTitle[i].innerText)
+ 
+
+ 
+ 
+
+/*for(let i=0;i<arrayItems.length;i++){
+ if(arrayItems[i].=== itemTitle){
+  console.log(byTitle[i])
  }
 }*/
 
+localStorage.setItem("items", JSON.stringify(arrayItems));
 
  const itemCartRow = document.createElement('div');
  
@@ -71,13 +77,16 @@ function addItemToCart(itemTitle, itemPrice,itemImage){
    <button class="aside-btn">X</button>
   </div>`;
  
- 
+  arrayItems.push({itemTitle,itemPrice,itemImage });
+  
  itemCartRow.innerHTML = cartContent;
  shopItems.append(itemCartRow);
  
  itemCartRow.querySelector('.aside-btn').addEventListener('click', deleteItem);
   totalCart();
 }
+
+
 
 function totalCart(){
  let total=0;
