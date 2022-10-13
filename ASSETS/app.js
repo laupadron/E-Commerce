@@ -1,6 +1,16 @@
 const shopItems = document.querySelector('.shop-items');
 const buttonAdd = document.querySelectorAll(' .btn-one');
 const cartsItems =document.querySelectorAll('.section');
+const allItemShop = document.querySelectorAll('.shop-items')
+
+let arrayItems =[];
+arrayItems = JSON.parse(localStorage.getItem("items"));
+addItemToCart();
+
+
+
+
+
 
 
 
@@ -15,18 +25,40 @@ buttonAdd.forEach(addItemShop =>{
 
 function addToCart(event){
  const boton =event.target;
+ 
  const itemComplete = boton.closest ('.section');
  
  const itemTitle= itemComplete.querySelector('.h3').textContent;
+ 
  const itemPrice =itemComplete.querySelector('.price').textContent;
  const itemImage = itemComplete.querySelector('.item-img').src;
- const itemCant = itemComplete.querySelector('.input').value
  
- addItemToCart(itemTitle, itemPrice,itemImage,itemCant);
+ 
+ 
+ addItemToCart(itemTitle, itemPrice,itemImage,);
+ 
+ 
 }
 
+
+
 function addItemToCart(itemTitle, itemPrice,itemImage){
+ 
+ arrayItems.push({itemImage,itemTitle,itemPrice});
+
+ localStorage.setItem("items", JSON.stringify(arrayItems));
+ 
+//const titleItem= document.querySelector('.h3').textContent;
+ //console.log(titleItem)
+/*for(let i=0;i<byTitle.length;i++){
+ if(byTitle[i].innerText=== itemTitle){
+  console.log(byTitle[i].innerText)
+ }
+}*/
+
+
  const itemCartRow = document.createElement('div');
+ 
  const cartContent = 
  `<div class="item">
    <img class="img"src=${itemImage} alt="">
@@ -38,10 +70,13 @@ function addItemToCart(itemTitle, itemPrice,itemImage){
    </form>
    <button class="aside-btn">X</button>
   </div>`;
+ 
+ 
  itemCartRow.innerHTML = cartContent;
  shopItems.append(itemCartRow);
- totalCart();
-  ;
+ 
+ itemCartRow.querySelector('.aside-btn').addEventListener('click', deleteItem);
+  totalCart();
 }
 
 function totalCart(){
@@ -54,12 +89,18 @@ function totalCart(){
   const itemPrice = Number(cartPrice.textContent.replace('$',''));
   
   const cantItems = element.querySelector('.input');
-  console.log(cantItems)
+  
   const itemCant = Number(cantItems.value);
-  console.log(itemCant)
+  
 
   total+= itemPrice*itemCant;
  
  });
  totalCart.innerHTML= `$ ${total}`
+}
+
+function deleteItem(element){
+ const clicked = element.target
+ clicked.closest('.item').remove();
+ totalCart();
 }
