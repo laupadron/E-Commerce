@@ -4,7 +4,7 @@ const cartsItems =document.querySelectorAll('.section');
 const allItemShop = document.querySelectorAll('.shop-items')
 
 let arrayItems =[];
-arrayItems = JSON.parse(localStorage.getItem("items"));
+
 
 
 
